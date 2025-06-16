@@ -1,0 +1,11 @@
+{
+	"name": "francisco/educontrol",
+	"autoload":{
+		"psr-4":{
+			"EduControl\\": "app/"
+		}		
+	},
+	"require": {
+		"symfony/mailer": "^7.3"
+	}
+}
