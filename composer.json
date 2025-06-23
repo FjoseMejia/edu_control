@@ -2,7 +2,7 @@
 	"name": "francisco/educontrol",
 	"autoload":{
 		"psr-4":{
-			"EduControl\\": "app/"
+			"EduControl\\": "app/"			
 		}		
 	},
 	"require": {

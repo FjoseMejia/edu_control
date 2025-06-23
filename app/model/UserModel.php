@@ -1,14 +1,27 @@
 <?php
 namespace EduControl\model;
+use EduControl\model\MainModel;
+use PDO;
 
-class UserModel{
+class UserModel extends MainModel{
 	private $email;
 	private $password;
-	private $cursor;
 	
-	public function __construct($email, $password, $link){
+	public function __construct($email, $password){
 		$this->email= $email;
+		$this->password= $password;		
 	}
-	$sqlLogin= "SELECT * FROM user WHERE email='$email' AND password= '$password'";
-	$objectUser= mysqli_query($link, $sqlLogin);
+	
+	public function findByEmail() {
+		$queryLogin = "SELECT user.email FROM user WHERE email = '{$this->email}'";
+		$stmt= $this->executeQuery($queryLogin);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	protected function verificateUser($cursor){
+		$queryLogin= "SELECT user.email
+				FROM user 
+				WHERE email='{$this->email}' 
+				AND password= '{$this->password}'";
+		
+	}	
 }

@@ -1,14 +1,13 @@
 <?php
-session_name("try_login");
+
 session_start();
+
 if(!isset($_SESSION["try"])){
 	$try= $_SESSION["try"]= 0;
-	$error= $_SESSION["error"]= 0;
 }
+
 $try= $_SESSION["try"];
-$error= $_SESSION["error"];
 $failedEmail= $_SESSION["email"] ?? "";
-echo $try;
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +15,14 @@ echo $try;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduControl</title>
-    <!--Css Bootstrap  -->    
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Iniciar Sesión</title>
 	<link href="../../css/index.css" rel="stylesheet">
 </head>
 <body>
+	<?php if (!empty($_SESSION['error'])): ?>
+		<div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
+		<?php unset($_SESSION['error']); ?>
+	<?php endif; ?>
     <main class="container">		
 		<form action="../public/login.php" method="POST" >
 			<div class="row">
@@ -29,12 +30,12 @@ echo $try;
 					<input type="hidden" name="form-type" value="login">
 					<div class="mb-3">
 						<label for="email" class="form-label ">Correo Electronico</label>
-						<input type="email" name="email" class="form-control input" id="email" aria-describedby="emailHelp" required value="<?= $failedEmail?>">				
+						<input type="email" name="email" class="form-control input" id="email" aria-describedby="emailHelp"  value=" <?= $failedEmail?>" required>				
 					</div>
 					
 					<div class="mb-3">
 						<label for="password" class="form-label ">password</label>
-						<input type="password" name="password" class="form-control input" id="password" aria-describedby="emailHelp" required >
+						<input type="password" name="password" class="form-control input" id="password" aria-describedby="emailHelp"  required>
 					</div>
 					
 					<div class="mb-3">
@@ -44,10 +45,10 @@ echo $try;
 			</div>
 		</form>
 	</main>
-	<script>
+	<!--<script>
 		var error= <?= json_encode($error) ?>;
 		let failedEmail= <?= json_encode($failedEmail) ?>;
-	</script>
+	</script>-->
 	
 	<script src="/EduControl/public/js/jquery-3.7.1.js"></script>
 	<script src="/EduControl/public/js/index.js"></script>
