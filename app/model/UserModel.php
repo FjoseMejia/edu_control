@@ -1,27 +1,22 @@
 <?php
-namespace EduControl\model;
-use EduControl\model\MainModel;
+namespace Klassroom\model;
+use Klassroom\model\MainModel;
 use PDO;
 
 class UserModel extends MainModel{
 	private $email;
-	private $password;
 	
-	public function __construct($email, $password){
+	public function __construct($email){
 		$this->email= $email;
-		$this->password= $password;		
 	}
 	
 	public function findByEmail() {
-		$queryLogin = "SELECT user.email FROM user WHERE email = '{$this->email}'";
-		$stmt= $this->executeQuery($queryLogin);
+		$query= "SELECT * 
+			FROM user 
+			WHERE email= :email";
+			
+		$params= ["email"=>$this->email];	
+		$stmt= $this->executeQuery($query, $params);
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
-	protected function verificateUser($cursor){
-		$queryLogin= "SELECT user.email
-				FROM user 
-				WHERE email='{$this->email}' 
-				AND password= '{$this->password}'";
-		
-	}	
 }

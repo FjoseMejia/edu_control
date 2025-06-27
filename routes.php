@@ -1,12 +1,11 @@
 <?php
 
-use EduControl\controller\AuthController;
+use Klasroom\controller\AuthController;
+use Klasroom\controller\DashboardController;
 
 return [
     '' => fn() => (new AuthController())->showLogin(),
     'login' => fn() => (new AuthController())->showLogin(),
     'login-post' => fn() => (new AuthController())->login($_POST),
-
-    // Puedes agregar más:
-    // 'dashboard' => fn() => (new DashboardController())->index(),
+    'dashboard' => fn()=> (new DashboardController())->index()
 ];

@@ -1,13 +1,12 @@
 <?php
-
+require_once "../config/app.php";
 session_start();
 
-if(!isset($_SESSION["try"])){
-	$try= $_SESSION["try"]= 0;
+if(isset($_SESSION[APP_SESSION_NAME])){
+	header("Location: ".APP_URL."dashboard");
+	exit;
 }
 
-$try= $_SESSION["try"];
-$failedEmail= $_SESSION["email"] ?? "";
 ?>
 
 <!DOCTYPE html>
@@ -16,45 +15,44 @@ $failedEmail= $_SESSION["email"] ?? "";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-	<link href="../../css/index.css" rel="stylesheet">
+	<link href="./css/login.css" rel="stylesheet">
 </head>
 <body>
 	<?php if (!empty($_SESSION['error'])): ?>
 		<div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
 		<?php unset($_SESSION['error']); ?>
 	<?php endif; ?>
-    <main class="container">		
-		<form action="../public/login.php" method="POST" >
-			<div class="row">
-				<div class="col-md-5">
-					<input type="hidden" name="form-type" value="login">
-					<div class="mb-3">
-						<label for="email" class="form-label ">Correo Electronico</label>
-						<input type="email" name="email" class="form-control input" id="email" aria-describedby="emailHelp"  value=" <?= $failedEmail?>" required>				
-					</div>
+	
+	<?php if (!empty($_SESSION['message'])): ?>
+		<div class="alert alert-danger"><?= $_SESSION['message'] ?></div>
+		<?php unset($_SESSION['message']); ?>
+	<?php endif; ?>
+	<main>
+		<div class="container">			
+			<div class="container-login">
+				<img class="logo" src="" alt="logo">
+				<h1>Klasroom</h1>
+				<form class="form-login" action="<?= APP_URL?>login" method="POST">
+					<label class="label" for="email">Correo electronico</label>
+					<input class="input" type="email" id="email" name="email" value="<?= $_GET['email'] ?? '' ?>">	
 					
-					<div class="mb-3">
-						<label for="password" class="form-label ">password</label>
-						<input type="password" name="password" class="form-control input" id="password" aria-describedby="emailHelp"  required>
-					</div>
+					<label class="label" for="password">Contraseña</label>
+					<input class="input input-password" type="password" id="password" name="password" placeholder="********" >
 					
-					<div class="mb-3">
-						<button type="submit" class="btn btn-primary" id="btn">Ingresar</button>
-					</div>
-				</div>
+					<input class="btn btn-primary btn-login" type="submit" value="Ingresar">
+					<a>Olvidé mi contraseña</a>
+					<input class="btn btn-secundary btn-register" type="submit" value="Registrarse">
+				</form>
 			</div>
-		</form>
-	</main>
+		</div>
+	</main>	
+	
 	<!--<script>
 		var error= <?= json_encode($error) ?>;
 		let failedEmail= <?= json_encode($failedEmail) ?>;
-	</script>-->
+	</script>
 	
 	<script src="/EduControl/public/js/jquery-3.7.1.js"></script>
-	<script src="/EduControl/public/js/index.js"></script>
-	
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	
-	
+	<script src="/EduControl/public/js/index.js"></script>	-->
 </body>
 </html>

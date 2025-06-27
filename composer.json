@@ -1,8 +1,8 @@
 {
-	"name": "francisco/educontrol",
+	"name": "francisco/klasroom",
 	"autoload":{
 		"psr-4":{
-			"EduControl\\": "app/"			
+			"Klassroom\\": "app/"			
 		}		
 	},
 	"require": {

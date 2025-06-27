@@ -1,5 +1,5 @@
 <?php
-namespace EduControl\model;
+namespace Klassroom\model;
 require_once __DIR__ . '/../../config/server.php';
 use PDO;
 use PDOException;
@@ -18,16 +18,16 @@ class MainModel{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);			
             return $pdo;
         } catch (PDOException $e) {
-			//No olvidar mostrarlo en producción
+			//No olvidar mandarlo a un archivo LOGS
             throw new Exception("Database connection failed: " . $e->getMessage());
         }
     }
 	
-	protected function executeQuery($query){
+	protected function executeQuery($query, array $params= []){
 		$pdo= $this-> getConnection();
-		//instrution SQL prepared
+		//instruction SQL prepared
 		$stmt= $pdo->prepare($query);
-		$stmt->execute();		
+		$stmt->execute($params);		
 		return $stmt;
 	}
 }

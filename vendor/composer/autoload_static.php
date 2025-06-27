@@ -31,10 +31,13 @@ class ComposerStaticInit9dabe2a7fed04d3e33081bff574bd708
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
         ),
+        'K' => 
+        array (
+            'Klassroom\\' => 10,
+        ),
         'E' => 
         array (
             'Egulias\\EmailValidator\\' => 23,
-            'EduControl\\' => 11,
         ),
         'D' => 
         array (
@@ -87,13 +90,13 @@ class ComposerStaticInit9dabe2a7fed04d3e33081bff574bd708
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Klassroom\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
+        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
-        ),
-        'EduControl\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (

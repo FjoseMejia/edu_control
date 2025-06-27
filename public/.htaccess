@@ -1,6 +1,6 @@
 RewriteEngine On
 Options All -Indexes
-RewriteBase /EduControl/public/
+RewriteBase /
 
 # Si el archivo o directorio existe, no redirigir
 RewriteCond %{REQUEST_FILENAME} !-f

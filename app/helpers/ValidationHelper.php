@@ -1,7 +1,7 @@
 <?php
-namespace EduControl\helpers;
+namespace Klassroom\helpers;
 
-use EduControl\exceptions\ValidationException;
+use Klassroom\exceptions\ValidationException;
 
 class ValidationHelper {
     public static function normalizeEmail(string $email): string {
@@ -13,6 +13,12 @@ class ValidationHelper {
         }
         return $email;
     }
+    
+    public static function normalizePassword(string $password):string{
+		$password = strtolower(trim($password));
+		$regex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,24}$/";
+		//hacer el preg_match
+	}
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace EduControl\exceptions;
+namespace Klassroom\exceptions;
 
 use Exception;
 
